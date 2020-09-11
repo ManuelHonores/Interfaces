@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>TP1Entregable</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Paint</h1>
+        <div id="herramienta">
+            <input type="radio" name="accion" value="pincel" checked="checked">
+            <label>Pintar</label>
+            <input type="radio" name="accion" value="borrar">
+            <label>Borrar</label>
+        </div>
+    </div>
+
+    
+    <br>
+
+    <label>Elegir medida de herramienta: </label>
+    <select id="pincel">
+        <option value=1 selected>1 Pixel</option>
+        <option value=3>3 Pixel</option>
+        <option value=5>5 Pixel</option>
+    </select>
+
+    <br>
+
+    <canvas id="canvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
+
+    <br>
+
+
+    <container class="containerFlex">
+        <button class="getImage" onclick="document.querySelector('.openImage').click();">Subir imagen</button>
+        <input class="openImage" type="file" style="display: none;" name="none">
+        <button id="lienzoBlanco">Lienzo Blanco</button>
+        <label>Seleccionar Filtros:</label>
+        <select id="filtros">
+            <option value="original">Original</option>
+            <option value="negativo">Negativo</option>
+            <option value="sepia">Sepia</option>
+            <option value="brillo">Brillo</option>
+            <option value="binarizacion">Binario</option>
+            <option value="grises">Escala de grises</option>
+            <option value="nitido">Nitido</option>
+            <option value="bordes">Bordes</option>
+            <option value="blur">Blur</option>
+            <option value="sobel">Sobel</option>
+            <option value="saturacion">Saturacion</option>
+        </select>
+    </container>
+
+    <script src="JavaScript/herramientas.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

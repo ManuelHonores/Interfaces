@@ -1,0 +1,11 @@
+.containerFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
