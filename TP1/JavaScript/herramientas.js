@@ -6,7 +6,7 @@ let ancho = canvas.width;
 
 let canvasData = imageData;
 
-let selectImage = document.querySelector('.openImage');
+let selectImage = document.querySelector("#openImage");
 
 let herramienta = "pincel";
 let tamPincel = 1;
@@ -494,6 +494,10 @@ document.querySelector("#filtros").addEventListener("change", function () {
 
 /* Carga de Imagen */
 
+document.querySelector("#getImage").addEventListener("click", function () {
+    document.querySelector("#openImage").click();
+})
+
 selectImage.onchange = e => {
     let file = e.target.files[0];
     if (checkImagen(file)) {
@@ -513,7 +517,7 @@ selectImage.onchange = e => {
 
                 //imageData = ctx.createImageData(canvas.width,canvas.height);
 
-                ctx.drawImage(image , 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 // se resetea el canvas con la imagen.
                 imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
@@ -540,35 +544,43 @@ function checkImagen(image) {
     return isImg;
 }
 
-function adaptCanvasTo(picture){
-    let arr=[];
+function adaptCanvasTo(picture) {
+    let arr = [];
     let imageAspectRatio;
     let imageScaledWidth;
     let imageScaledHeight;
-    if(picture.width > picture.height) {
+    if (picture.width > picture.height) {
         imageAspectRatio = (1.0 * picture.height) / picture.width;
         imageScaledWidth = ancho;
         imageScaledHeight = alto * imageAspectRatio;
-    }else {
+    } else {
         imageAspectRatio = (1.0 * picture.width) / picture.height;
         imageScaledWidth = ancho * imageAspectRatio;
-        imageScaledHeight = alto;                   
+        imageScaledHeight = alto;
     }
     arr.push(imageScaledWidth);
     arr.push(imageScaledHeight);
-    canvas.width = imageScaledWidth ;
-    canvas.height = imageScaledHeight; 
+    canvas.width = imageScaledWidth;
+    canvas.height = imageScaledHeight;
     return arr;
 }
 
 /* Limpiar lienzo */
 
-document.getElementById("lienzoBlanco").addEventListener("click", function(){
-    imagenOriginal = []
-    for(let i = 0; i<canvas.width; i++) {
-        for(let j = 0; j<canvas.height; j++) {
-            setPixel(imageData,i,j,255,255,255,255);
+document.getElementById("lienzoBlanco").addEventListener("click", function () {
+    imagenOriginal = [];
+    for (let i = 0; i < canvas.width; i++) {
+        for (let j = 0; j < canvas.height; j++) {
+            setPixel(imageData, i, j, 255, 255, 255, 255);
         }
     }
-    ctx.putImageData(imageData,0,0);
+    ctx.putImageData(imageData, 0, 0);
+});
+
+/* Descargar imagen */
+
+let downloadImage = document.querySelector("#download");
+downloadImage.addEventListener("click", function(){
+    downloadImage.href = canvas.toDataURL();
+    downloadImage.download = "Proyecto.png";
 });

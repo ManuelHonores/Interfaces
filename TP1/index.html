@@ -6,57 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <title>TP1Entregable</title>
 </head>
 
 <body>
 
-    <div class="header">
+    <header>
         <h1>Paint</h1>
+    </header>
+    
+    <section>
+        <!--<div class="herramientas" id="herramienta"> -->
         <div id="herramienta">
-            <input type="radio" name="accion" value="pincel" checked="checked">
-            <label>Pintar</label>
-            <input type="radio" name="accion" value="borrar">
-            <label>Borrar</label>
+            <div>
+                <input type="radio" name="accion" value="pincel" checked="checked" id="male">
+                <label for="male">Pintar</label><br>
+            </div>
+            <div>
+                <input type="radio" name="accion" value="borrar" id="female">
+                <label for="female">Borrar</label><br>
+            </div>
+
+            <div>
+                <label>Tamaño: </label>
+                <select id="pincel">
+                    <option value=1 selected>1 Pixel</option>
+                    <option value=3>3 Pixel</option>
+                    <option value=5>5 Pixel</option>
+                </select>
+            </div>
         </div>
+    </section>
+
+
+
+    <section>
+        <div class= "edicionImagen">
+            <div>
+                <button id="getImage">Subir imagen</button>
+                <input id="openImage" type="file" style="display: none;" name="none">
+                <button id="lienzoBlanco">Lienzo Blanco</button>
+            </div>
+            <div>
+                <label>Seleccionar Filtros: </label>
+                <select id="filtros">
+                    <option value="original">Original</option>
+                    <option value="negativo">Negativo</option>
+                    <option value="sepia">Sepia</option>
+                    <option value="brillo">Brillo</option>
+                    <option value="binarizacion">Binario</option>
+                    <option value="grises">Escala de grises</option>
+                    <option value="nitido">Nitido</option>
+                    <option value="bordes">Bordes</option>
+                    <option value="blur">Blur</option>
+                    <option value="sobel">Sobel</option>
+                    <option value="saturacion">Saturacion</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <picture>
+        <canvas id="canvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
+    </picture>
+
+    <!-- <button id="download">Descargar proyecto</button> -->
+    <div class="btnDownload">
+        <a href="" download="myProy.png" id="download">Descargar</a>
     </div>
 
-    
-    <br>
-
-    <label>Elegir medida de herramienta: </label>
-    <select id="pincel">
-        <option value=1 selected>1 Pixel</option>
-        <option value=3>3 Pixel</option>
-        <option value=5>5 Pixel</option>
-    </select>
-
-    <br>
-
-    <canvas id="canvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
-
-    <br>
-
-
-    <container class="containerFlex">
-        <button class="getImage" onclick="document.querySelector('.openImage').click();">Subir imagen</button>
-        <input class="openImage" type="file" style="display: none;" name="none">
-        <button id="lienzoBlanco">Lienzo Blanco</button>
-        <label>Seleccionar Filtros:</label>
-        <select id="filtros">
-            <option value="original">Original</option>
-            <option value="negativo">Negativo</option>
-            <option value="sepia">Sepia</option>
-            <option value="brillo">Brillo</option>
-            <option value="binarizacion">Binario</option>
-            <option value="grises">Escala de grises</option>
-            <option value="nitido">Nitido</option>
-            <option value="bordes">Bordes</option>
-            <option value="blur">Blur</option>
-            <option value="sobel">Sobel</option>
-            <option value="saturacion">Saturacion</option>
-        </select>
-    </container>
+    <footer>
+        <p>@paint</p>
+        <p>IDEAS | EDICIÓN | FOTOGRAFÍA</p>
+    </footer>
 
     <script src="JavaScript/herramientas.js"></script>
 
