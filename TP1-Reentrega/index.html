@@ -27,9 +27,32 @@
         </select>
     </div>
 
+    <div>
+        <button id="getImage">Subir imagen</button>
+        <input id="openImage" type="file" style="display: none;" name="none">
+    </div>
+
+    <div>
+        <label>Seleccionar Filtros: </label>
+        <select id="filtros">
+            <option value="original">Original</option>
+            <option value="negativo">Negativo</option>
+            <option value="sepia">Sepia</option>
+            <option value="binarizacion">Binario</option>
+            <option value="grises">Escala de grises</option>
+            <option value="nitido">Nitido</option>
+            <option value="bordes">Bordes</option>
+            <option value="sobel">Sobel</option>
+        </select>
+    </div>
+
+    <!-- <button id="btn">Sepia</button> -->
+
     <canvas id="canvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
 
     <script src="js/paint.js"></script>
+    <script src="js/cargaImagen.js"></script>
+    <script src="js/filtros.js"></script>
 
 </body>
 </html>
