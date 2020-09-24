@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>ReEntrega TP1</title>
+</head>
+<body>
+    <p>
+        Paint
+    </p>
+    
+    <ul>
+        <li>
+            <button id="pincel" value="pincel">Pincel</button>
+            <button id="goma" value="goma">Goma</button>
+            <input type="color" id="color" value="#000000">
+        </li>
+    </ul>
+    <div>
+        <label>Tamaño: </label>
+        <select id="tamanio">
+            <option value=1 selected>1 Pixel</option>
+            <option value=5>5 Pixel</option>
+            <option value=10>10 Pixel</option>
+        </select>
+    </div>
+
+    <canvas id="canvas" width="500" height="500" style="border:1px solid #d3d3d3;"></canvas>
+
+    <script src="js/paint.js"></script>
+
+</body>
+</html>
