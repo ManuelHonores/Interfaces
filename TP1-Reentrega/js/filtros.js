@@ -1,9 +1,5 @@
 let r,g,b,a;
 
-// let btn = document.getElementById("btn").addEventListener("click", function(){
-//     sepia();
-// })
-
 /* Funciones para obtener los r,g,b,a de la imagen */
 
 function getPixel(x,y,pix) {
@@ -164,3 +160,58 @@ function setPixel(imageData, x, y, r, g, b, a) {
     imageData.data[index + 2] = b;
     imageData.data[index + 3] = a;
 }
+
+function getPixel(x,y,pix) {
+    let index = (x + y * imageData.width) * 4;
+    return imageData.data[index + pix];
+}
+
+document.querySelector("#filtros").addEventListener("change", function () {
+    let filtro = document.querySelector("#filtros").value;
+    switch (filtro) {
+
+        case "original": {
+            restaurarImagenOriginal();
+            break;
+        }
+        case "sepia": {
+            restaurarImagenOriginal();
+            sepia();
+            break;
+        }
+        case "negativo": {
+            restaurarImagenOriginal();
+            negativo();
+            break;
+        }
+        case "binarizacion": {
+            restaurarImagenOriginal();
+            binarizacion();
+            break;
+        }
+        case "grises": {
+            restaurarImagenOriginal();
+            escalaGrises();
+            break;
+        }
+        case "nitido": {
+            restaurarImagenOriginal();
+            convolucion(kernels.sharpen);
+            break;
+        }
+        case "bordes": {
+            restaurarImagenOriginal();
+            convolucion(kernels.edge);
+            break;
+        }
+        case "sobel": {
+            restaurarImagenOriginal();
+            convolucion(kernels.sobel1);
+            convolucion(kernels.sobel2);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+});
