@@ -38,13 +38,13 @@ selectImage.onchange = e => {
                 imageData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
 
                 ctx.putImageData(imageData, 0, 0);
-                
+
                 imagenOriginalData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight); //Guardo en otra variable la imagen original para poder restaurar luego de aplicar cambios
             }
         }
     }
-     else {
-         alert("Las extensiones aceptadas son: .png .jpg .jpeg");
+    else {
+        alert("Las extensiones aceptadas son: .png .jpg .jpeg");
     }
     selectImage.value = null;
 }
@@ -52,8 +52,8 @@ selectImage.onchange = e => {
 function checkExtensionImagen(file) {
     let aceptarImagen = false;
     let tipo = file.type;
-    
-    if(tipo == "image/png" || tipo == "image/jpg" || tipo == "image/jpeg") {
+
+    if (tipo == "image/png" || tipo == "image/jpg" || tipo == "image/jpeg") {
         aceptarImagen = true;
     } else {
         aceptarImagen = false;
@@ -62,8 +62,36 @@ function checkExtensionImagen(file) {
 }
 
 function restaurarImagenOriginal() {
-    for(let i=0; i<imagenOriginalData.data.length; i++) {
+    for (let i = 0; i < imagenOriginalData.data.length; i++) {
         imageData.data[i] = imagenOriginalData.data[i];
     }
     ctx.putImageData(imageData, 0, 0);
 }
+
+document.querySelector("#descarga").addEventListener("click", function () {
+    let filename = prompt("Guardar como", ""),
+        link = document.createElement('a');
+
+    if (filename == null) { //Si se cancela no envío nada
+        return false;
+    }
+    else if (filename == "") { //Si no se completa con un nombre la descar, se asigna Sin titulo
+        link.download = "Sin titulo";
+        link.href = canvas.toDataURL("image/png");
+    }
+    else { //Si pone un nombre en el input y tambien lo acepta, se descarga la imagen con dicho
+        link.download = filename;
+        link.href = canvas.toDataURL("image/png");
+    }
+    link.click();
+});
+
+//Funcion para poner el Lienzo de nuevo en blanco
+document.querySelector("#blanco").addEventListener("click", function(){
+    for(let i=0; i<imageData.data.length; i++) {
+        imageData.data[i] = 255;
+    }
+    canvas.width = ancho;
+    canvas.height = alto;
+    ctx.putImageData(imageData, 0, 0);
+});
