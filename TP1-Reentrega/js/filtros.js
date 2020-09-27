@@ -214,4 +214,5 @@ document.querySelector("#filtros").addEventListener("change", function () {
             break;
         }
     }
+    
 });
