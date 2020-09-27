@@ -1,3 +1,20 @@
 li {
     list-style:none
 }
+
+.navbar-brand.mb-0.h1 {
+    font-size: 200%;
+}
+
+.navbar-nav > li{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+
+.centrado {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

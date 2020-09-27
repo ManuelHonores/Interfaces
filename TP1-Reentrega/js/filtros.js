@@ -1,8 +1,8 @@
-let r,g,b,a;
+let r, g, b, a;
 
 /* Funciones para obtener los r,g,b,a de la imagen */
 
-function getPixel(x,y,pix) {
+function getPixel(x, y, pix) {
     let index = (x + y * imageData.width) * 4;
     return imageData.data[index + pix];
 }
@@ -10,78 +10,78 @@ function getPixel(x,y,pix) {
 /* Filtros comunes */
 
 function escalaGrises() {
-    for(let i=0; i<canvas.width; i++) {
-        for(let j=0; j<canvas.height; j++) {
-            let red = getPixel(i,j,0);
-            let green = getPixel(i,j,1);
-            let blue = getPixel(i,j,2);
+    for (let i = 0; i < canvas.width; i++) {
+        for (let j = 0; j < canvas.height; j++) {
+            let red = getPixel(i, j, 0);
+            let green = getPixel(i, j, 1);
+            let blue = getPixel(i, j, 2);
 
             let prom = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
 
             red = green = blue = prom;
 
-            setPixel(imageData,i,j,red,green,blue,255);
+            setPixel(imageData, i, j, red, green, blue, 255);
         }
     }
-    ctx.putImageData(imageData,0,0);
+    ctx.putImageData(imageData, 0, 0);
 }
 
 function negativo() {
-    for(let i=0; i<canvas.width; i++) {
-        for(let j=0; j<canvas.height; j++) {
-            let red = 255 - getPixel(i,j,0);
-            let green = 255 - getPixel(i,j,1);
-            let blue = 255 - getPixel(i,j,2);
+    for (let i = 0; i < canvas.width; i++) {
+        for (let j = 0; j < canvas.height; j++) {
+            let red = 255 - getPixel(i, j, 0);
+            let green = 255 - getPixel(i, j, 1);
+            let blue = 255 - getPixel(i, j, 2);
 
-            setPixel(imageData,i,j,red,green,blue,255);
+            setPixel(imageData, i, j, red, green, blue, 255);
         }
     }
-    ctx.putImageData(imageData,0,0);
+    ctx.putImageData(imageData, 0, 0);
 }
 
 function binarizacion() {
-    for(let i=0; i<canvas.width; i++) {
-        for(let j=0; j<canvas.height; j++) {
-            let red = getPixel(i,j,0);
-            let green = getPixel(i,j,1);
-            let blue = getPixel(i,j,2);
+    for (let i = 0; i < canvas.width; i++) {
+        for (let j = 0; j < canvas.height; j++) {
+            let red = getPixel(i, j, 0);
+            let green = getPixel(i, j, 1);
+            let blue = getPixel(i, j, 2);
 
-            let prom = Math.floor((getPixel(i,j,0) + getPixel(i,j,1) + getPixel(i,j,2)) / 3);
-            
+            let prom = Math.floor((getPixel(i, j, 0) + getPixel(i, j, 1) + getPixel(i, j, 2)) / 3);
+
             let grey = (0.3 * red) + (0.59 * green) + (0.11 * blue);
 
-            if(grey >= prom) {
+            if (grey >= prom) {
                 red = green = blue = 255;
             } else {
                 red = green = blue = 0;
             }
-            setPixel(imageData,i,j,red,green,blue,255);
+            setPixel(imageData, i, j, red, green, blue, 255);
         }
     }
-    ctx.putImageData(imageData,0,0);
+    ctx.putImageData(imageData, 0, 0);
 }
 
 function sepia() {
-    for(let i=0; i<canvas.width; i++) {
-        for(let j=0; j<canvas.height; j++) {
-            let red = getPixel(i,j,0);
-            let green = getPixel(i,j,1);
-            let blue = getPixel(i,j,2);
+    for (let i = 0; i < canvas.width; i++) {
+        for (let j = 0; j < canvas.height; j++) {
+            let red = getPixel(i, j, 0);
+            let green = getPixel(i, j, 1);
+            let blue = getPixel(i, j, 2);
 
             let r = 255 - red;
             let g = 255 - green;
             let b = 255 - blue;
 
             setPixel(imageData, i, j, r, g, b, 255);
- 
-            r = ( red * .393 ) + ( green *.769 ) + ( blue * .189 );
-            g = ( red * .349 ) + ( green *.686 ) + ( blue * .168 );
-            b = ( red * .272 ) + ( green *.534 ) + ( blue * .131 );
+
+            r = (red * .393) + (green * .769) + (blue * .189);
+            g = (red * .349) + (green * .686) + (blue * .168);
+            b = (red * .272) + (green * .534) + (blue * .131);
 
             setPixel(imageData, i, j, r, g, b, 255);
         }
     }
-    ctx.putImageData(imageData,0,0);
+    ctx.putImageData(imageData, 0, 0);
 }
 
 /* Filtros especiales */
@@ -161,7 +161,7 @@ function setPixel(imageData, x, y, r, g, b, a) {
     imageData.data[index + 3] = a;
 }
 
-function getPixel(x,y,pix) {
+function getPixel(x, y, pix) {
     let index = (x + y * imageData.width) * 4;
     return imageData.data[index + pix];
 }

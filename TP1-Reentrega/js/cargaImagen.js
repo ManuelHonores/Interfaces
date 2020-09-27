@@ -87,8 +87,8 @@ document.querySelector("#descarga").addEventListener("click", function () {
 });
 
 //Funcion para poner el Lienzo de nuevo en blanco
-document.querySelector("#blanco").addEventListener("click", function(){
-    for(let i=0; i<imageData.data.length; i++) {
+document.querySelector("#blanco").addEventListener("click", function () {
+    for (let i = 0; i < imageData.data.length; i++) {
         imageData.data[i] = 255;
     }
     canvas.width = ancho;

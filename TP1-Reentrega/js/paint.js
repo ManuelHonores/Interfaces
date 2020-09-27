@@ -15,7 +15,7 @@ let tamanioHerramienta = 1;
 let color = document.querySelector("#color");
 let colorElegido;
 
-color.addEventListener("change", function(){
+color.addEventListener("change", function () {
     colorElegido = color.value;
 });
 
@@ -23,18 +23,18 @@ color.addEventListener("change", function(){
  * Seleccion de herramienta (lapiz o goma)
  */
 let pincel = document.getElementById("pincel");
-pincel.addEventListener("click",function(){
+pincel.addEventListener("click", function () {
     opcion = pincel.value;
 });
 
 let goma = document.getElementById("goma");
-goma.addEventListener("click",function(){
+goma.addEventListener("click", function () {
     opcion = goma.value;
 });
 
 // Tamaño de herramienta
 
-document.querySelector("#tamanio").addEventListener("change", function(){
+document.querySelector("#tamanio").addEventListener("change", function () {
     tamanioHerramienta = tamanio.options[tamanio.selectedIndex].value;
 })
 
@@ -42,29 +42,29 @@ document.querySelector("#tamanio").addEventListener("change", function(){
 
 //Dejo seteado a que funcion va a llamar cada evento de mouse
 
-document.addEventListener("mousedown", comenzarDibujo); 
-document.addEventListener("mousemove", dibujando); 
-document.addEventListener("mouseup", pararDibujo); 
+document.addEventListener("mousedown", comenzarDibujo);
+document.addEventListener("mousemove", dibujando);
+document.addEventListener("mouseup", pararDibujo);
 
 function comenzarDibujo(e) {
-    if(opcion == "pincel" || opcion == "goma"){
+    if (opcion == "pincel" || opcion == "goma") {
         ejecutarAccion = true;
         obtenerCoordenadas(e); //Obetengo las coordenadas iniciales (cuando hago click)
     }
 }
 
 function dibujando(e) {
-    if(ejecutarAccion) {
-        ctx.beginPath(); 
+    if (ejecutarAccion) {
+        ctx.beginPath();
         ctx.lineWidth = tamanioHerramienta; //Debe llegar tamaño de pincel
         ctx.lineCap = 'round'; //Con esto hago que dibuje de forma redondeada
-        
-        if(opcion == "goma") {
-            ctx.strokeStyle = "white";    
+
+        if (opcion == "goma") {
+            ctx.strokeStyle = "white";
         } else {
             ctx.strokeStyle = colorElegido; //Se puede implementar una paleta de colores y mandar la opcion aca
         }
-        
+
         ctx.moveTo(x, y); //Coordenadas iniciales
         obtenerCoordenadas(e); //Cargo nuevas coordenadas de donde me estoy moviendo
         ctx.lineTo(x, y); //Nuevas coordenadas a donde tiene que dibujar
