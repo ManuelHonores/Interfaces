@@ -2,6 +2,8 @@ let ancho = canvas.width;
 let alto = canvas.height;
 let imagenCargada = null;
 
+let original = ctx.createImageData(canvas.width, canvas.height); //Para restaurar el imageData luego de limpiar el lienzo
+
 let imageData = ctx.createImageData(canvas.width, canvas.height);
 
 //En esta variable voy a guardar la imagen original cargada para poder restablecer antes de aplicar algún filtro
@@ -72,10 +74,10 @@ document.querySelector("#descarga").addEventListener("click", function () {
     let filename = prompt("Guardar como", ""),
         link = document.createElement('a');
 
-    if (filename == null) { //Si se cancela no envío nada
+    if (filename == null) { //Si elige cancelar, no se guarda nada
         return false;
     }
-    else if (filename == "") { //Si no se completa con un nombre la descar, se asigna Sin titulo
+    else if (filename == "") { //Si no se completa con un nombre la descarga, se asigna "Sin titulo"
         link.download = "Sin titulo";
         link.href = canvas.toDataURL("image/png");
     }
@@ -91,7 +93,13 @@ document.querySelector("#blanco").addEventListener("click", function () {
     for (let i = 0; i < imageData.data.length; i++) {
         imageData.data[i] = 255;
     }
+
+    imagenOriginalData = null;
+
+    imageData = original;
+   
     canvas.width = ancho;
     canvas.height = alto;
+    
     ctx.putImageData(imageData, 0, 0);
 });

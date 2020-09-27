@@ -32,8 +32,8 @@ function negativo() {
             let red = 255 - getPixel(i, j, 0);
             let green = 255 - getPixel(i, j, 1);
             let blue = 255 - getPixel(i, j, 2);
-
             setPixel(imageData, i, j, red, green, blue, 255);
+            
         }
     }
     ctx.putImageData(imageData, 0, 0);
@@ -168,50 +168,45 @@ function getPixel(x, y, pix) {
 
 document.querySelector("#filtros").addEventListener("change", function () {
     let filtro = document.querySelector("#filtros").value;
-    switch (filtro) {
-
-        case "original": {
-            restaurarImagenOriginal();
-            break;
-        }
-        case "sepia": {
-            restaurarImagenOriginal();
-            sepia();
-            break;
-        }
-        case "negativo": {
-            restaurarImagenOriginal();
-            negativo();
-            break;
-        }
-        case "binarizacion": {
-            restaurarImagenOriginal();
-            binarizacion();
-            break;
-        }
-        case "grises": {
-            restaurarImagenOriginal();
-            escalaGrises();
-            break;
-        }
-        case "nitido": {
-            restaurarImagenOriginal();
-            convolucion(kernels.sharpen);
-            break;
-        }
-        case "bordes": {
-            restaurarImagenOriginal();
-            convolucion(kernels.edge);
-            break;
-        }
-        case "sobel": {
-            restaurarImagenOriginal();
-            convolucion(kernels.sobel1);
-            convolucion(kernels.sobel2);
-            break;
-        }
-        default: {
-            break;
+    if(imagenOriginalData != null) {
+        restaurarImagenOriginal();
+        switch (filtro) {
+    
+            case "original": {
+                break;
+            }
+            case "sepia": {
+                sepia();
+                break;
+            }
+            case "negativo": {
+                negativo();
+                break;
+            }
+            case "binarizacion": {
+                binarizacion();
+                break;
+            }
+            case "grises": {
+                escalaGrises();
+                break;
+            }
+            case "nitido": {
+                convolucion(kernels.sharpen);
+                break;
+            }
+            case "bordes": {
+                convolucion(kernels.edge);
+                break;
+            }
+            case "sobel": {
+                convolucion(kernels.sobel1);
+                convolucion(kernels.sobel2);
+                break;
+            }
+            default: {
+                break;
+            }
         }
     }
 });
